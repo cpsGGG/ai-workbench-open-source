@@ -1,0 +1,4 @@
+# Optional integrations; Python 3.11+ is required for the standard-library server.
+PyMuPDF>=1.24,<2
+zstandard>=0.22,<1
+selenium>=4.20,<5

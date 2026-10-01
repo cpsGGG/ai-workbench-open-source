@@ -1,0 +1,939 @@
+/* Statistics visual layer. Scoped to preserve every other workspace module. */
+.tokenStatsWorkspace {
+  --token-blue: #4f5fd5;
+  --token-border: #e2e7ef;
+  --token-muted: #6f7b90;
+  --token-stats-accent: #4f5fd5;
+  --token-stats-muted: #6f7b90;
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+  padding: 32px clamp(20px, 3vw, 48px) 48px;
+  background: #f4f6fa;
+  color: #26334c;
+  font-variant-numeric: tabular-nums;
+}
+
+.tokenStatsWorkspace .tokenStatsTopbar {
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.tokenStatsWorkspace .tokenStatsEyebrow {
+  margin-bottom: 9px;
+  color: #7d87a1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.tokenStatsWorkspace .tokenStatsHeading h1 {
+  color: #202d45;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+}
+
+.tokenStatsWorkspace .tokenStatsScanLine {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.tokenStatsWorkspace .tokenStatsHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.tokenStatsWorkspace .tokenStatsLocalBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #778296;
+  font-size: 11px;
+}
+
+.tokenStatsWorkspace .tokenStatsLocalBadge::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6e9b91;
+  content: "";
+}
+
+.tokenStatsWorkspace .tokenStatsRefreshButton {
+  min-height: 38px;
+  min-width: 82px;
+  border: 1px solid #dce2ec;
+  border-radius: 9px;
+  background: #fff;
+  color: #536077;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgb(32 45 69 / 3%);
+}
+
+.tokenStatsWorkspace button {
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.tokenStatsWorkspace button:focus-visible,
+.tokenStatsWorkspace input:focus-visible,
+.tokenStatsWorkspace select:focus-visible {
+  outline: 2px solid #6676e5;
+  outline-offset: 3px;
+}
+
+.tokenStatsWorkspace .tokenStatsRefreshButton:hover:not(:disabled) {
+  border-color: #acb6d4;
+  color: #4254bc;
+  background: #fafbff;
+}
+
+.tokenStatsWorkspace .tokenStatsFilterBar {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) auto;
+  gap: 14px 18px;
+  margin-bottom: 22px;
+  border: 1px solid var(--token-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.tokenStatsWorkspace .tokenStatsSourceControl {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  min-width: 0;
+  width: 530px;
+  max-width: 100%;
+  border-radius: 9px;
+  background: #f0f3f8;
+  padding: 4px;
+  gap: 2px;
+}
+
+.tokenStatsWorkspace .tokenStatsSourceControl button {
+  min-height: 32px;
+  padding: 5px 10px;
+  color: #778197;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsSourceControl button.tokenStatsSourceSelected {
+  border: 0;
+  background: #fff;
+  color: #4353b7;
+  box-shadow: 0 1px 4px rgb(35 49 78 / 10%);
+}
+
+.tokenStatsWorkspace .tokenStatsDateRange {
+  margin-left: 0;
+  gap: 8px;
+}
+
+.tokenStatsWorkspace .tokenStatsDateRange input,
+.tokenStatsWorkspace .tokenStatsAdvancedFilters select {
+  min-height: 36px;
+  border-color: #e3e7ef;
+  border-radius: 8px;
+  color: #526078;
+  background: #fff;
+  font-size: 13px;
+}
+
+.tokenStatsWorkspace .tokenStatsDateRange input {
+  width: 138px;
+}
+
+.tokenStatsWorkspace .tokenStatsQueryButton {
+  min-height: 36px;
+  min-width: 62px;
+  border-color: #4f5fd5;
+  border-radius: 8px;
+  background: #4f5fd5;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.tokenStatsWorkspace .tokenStatsQueryButton:hover {
+  background: #4352bf;
+}
+
+.tokenStatsWorkspace .tokenStatsQuickRanges {
+  gap: 5px;
+  padding: 0;
+  border: 0;
+}
+
+.tokenStatsWorkspace .tokenStatsQuickRanges button {
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 6px;
+  color: #78839a;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsQuickRanges button:hover,
+.tokenStatsWorkspace .tokenStatsQuickRanges button[aria-pressed="true"] {
+  color: #4f5fd5;
+  background: #eef0fd;
+}
+
+.tokenStatsWorkspace .tokenStatsAdvancedFilters {
+  width: auto;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  gap: 10px;
+}
+
+.tokenStatsWorkspace .tokenStatsAdvancedFilters select {
+  width: 150px;
+  max-width: 180px;
+  min-height: 32px;
+  background: #fafbfe;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsOverview,
+.tokenStatsWorkspace .tokenStatsActivityCard,
+.tokenStatsWorkspace .tokenStatsTrendCard,
+.tokenStatsWorkspace .tokenStatsDetailsCard {
+  margin-bottom: 20px;
+  border: 1px solid var(--token-border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgb(29 43 73 / 2%);
+}
+
+.tokenStatsWorkspace .tokenStatsOverview {
+  grid-template-columns: minmax(200px, 1fr) minmax(320px, .9fr);
+  gap: 25px 28px;
+  padding: 28px 28px 22px;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewIcon {
+  display: none;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewLead small,
+.tokenStatsWorkspace .tokenStatsOverviewSide small,
+.tokenStatsWorkspace .tokenStatsOverviewMetric small {
+  color: #788398;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewLead strong {
+  margin-top: 10px;
+  color: #25324d;
+  font-size: clamp(34px, 3.3vw, 46px);
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -.045em;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewLead span {
+  margin-top: 9px;
+  color: #8b94a5;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewSide {
+  align-self: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewSide > div {
+  min-width: 0;
+  padding: 10px 22px;
+  border-left: 1px solid #e9edf4;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewSide strong {
+  margin-top: 10px;
+  color: #35425d;
+  font-size: clamp(18px, 1.8vw, 25px);
+  font-weight: 600;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  letter-spacing: -.025em;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewSide .tokenStatsCostValue {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow-wrap: normal;
+}
+
+.tokenStatsWorkspace .tokenStatsCostBadge {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 3px 6px;
+  background: #f0f2f8;
+  color: #66718b;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.tokenStatsWorkspace .tokenStatsMetricGrid {
+  gap: 0;
+  padding-top: 20px;
+  border-top: 1px solid #edf0f5;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewMetric,
+.tokenStatsWorkspace .tokenStatsCacheRate {
+  border: 0;
+  border-right: 1px solid #edf0f5;
+  border-radius: 0;
+  padding: 2px 18px;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewMetric:first-child {
+  padding-left: 0;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewMetric::before {
+  display: none;
+}
+
+.tokenStatsWorkspace .tokenStatsOverviewMetric strong {
+  margin-top: 10px;
+  color: #35425d;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -.025em;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheCoverage {
+  display: block;
+  margin-top: 3px;
+  color: #a77837;
+  font-size: 11px;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheRate {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheRate > div:first-child {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheRate strong {
+  color: #5363c3;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheRate.is-unknown strong {
+  color: #8a94a7;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheRate.is-unknown > span {
+  display: block;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheRate small,
+.tokenStatsWorkspace .tokenStatsCacheRate span {
+  color: #7d889c;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheTrack {
+  height: 4px;
+  margin: 11px 0 8px;
+  background: #eef0f7;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheTrack i {
+  background: #7985d9;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityCard {
+  --token-activity-empty: #eef1f6;
+  --token-activity-level-1: #e1edff;
+  --token-activity-level-2: #bdd7fb;
+  --token-activity-level-3: #8ebaf2;
+  --token-activity-level-4: #6096e3;
+  --token-activity-level-5: #3d70ca;
+  --token-activity-level-6: #274fa6;
+  --token-activity-level-7: #153376;
+  --token-activity-cell-size: 14px;
+  padding: 24px 28px 18px;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityHeader,
+.tokenStatsWorkspace .tokenStatsCardHeader {
+  margin-bottom: 22px;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityHeader h2,
+.tokenStatsWorkspace .tokenStatsCardHeader h2 {
+  margin: 0;
+  color: #35425b;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: -.015em;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityHeader p,
+.tokenStatsWorkspace .tokenStatsCardHeader p {
+  margin-top: 6px;
+  color: #7d889b;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityScope {
+  display: block;
+  color: #939cae;
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegend {
+  align-self: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  max-width: 760px;
+  gap: 6px 9px;
+  color: #7d889c;
+  font-size: 11px;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegendLabel {
+  color: #68758d;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegendItem b,
+.tokenStatsWorkspace .tokenStatsActivityLegendEmpty {
+  color: #7d889c;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegend i {
+  width: 10px;
+  min-width: 10px;
+  height: 10px;
+  min-height: 10px;
+  border-radius: 3px;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegend i[data-level="6"],
+.tokenStatsWorkspace .tokenStatsActivityDay[data-level="6"] {
+  background: var(--token-activity-level-6);
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegend i[data-level="7"],
+.tokenStatsWorkspace .tokenStatsActivityDay[data-level="7"] {
+  background: var(--token-activity-level-7);
+}
+
+.tokenStatsWorkspace .tokenStatsActivityDay {
+  border-radius: 3px;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegendDivider {
+  width: 1px;
+  height: 14px;
+  margin: 0 3px;
+  background: #dfe4ec;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityLegend i.is-activity-only,
+.tokenStatsWorkspace .tokenStatsActivityDay.is-activity-only {
+  border: 1px dashed #c79135;
+  background: #fff7dc;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityDay.has-partial-token-coverage {
+  box-shadow: inset 0 0 0 2px #f1c35f;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageNote {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  margin: -5px 0 20px;
+  border: 1px solid #e7dfc5;
+  border-radius: 13px;
+  padding: 13px 16px;
+  background: #fffdf6;
+  color: #615a48;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageIcon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  background: #f4ead0;
+  color: #9a7029;
+  font-size: 16px;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageTitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageTitle strong {
+  color: #4e493e;
+  font-size: 13px;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageTitle span {
+  border-radius: 999px;
+  padding: 2px 7px;
+  background: #f4ead0;
+  color: #856425;
+  font-size: 10px;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageNote p {
+  margin: 4px 0 0;
+  color: #77705f;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.tokenStatsWorkspace .tokenStatsCoverageScope {
+  display: block;
+  margin-top: 3px;
+  color: #958d7b;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityDay.is-future {
+  background: #f6f7fa;
+  opacity: .75;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityMonths,
+.tokenStatsWorkspace .tokenStatsActivityWeekdays {
+  color: #8490a4;
+  font-size: 11px;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityReadout {
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top-color: #edf0f5;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityReadout strong {
+  color: #53627c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tokenStatsWorkspace .tokenStatsActivityReadout span {
+  color: #8490a4;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsTrendCard {
+  padding: 24px 28px 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsChartLegend {
+  align-self: center;
+  gap: 9px 16px;
+  color: #7b869a;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsChartLegend i {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.tokenStatsWorkspace .tokenStatsChartGrid line {
+  stroke: #edf0f5;
+  stroke-dasharray: none;
+}
+
+.tokenStatsWorkspace .tokenStatsChartGrid text {
+  fill: #8792a6;
+}
+
+.tokenStatsWorkspace .tokenStatsChartHit:hover {
+  stroke: #4f5fd5;
+}
+
+.tokenStatsWorkspace .tokenStatsTabs {
+  gap: 22px;
+  padding: 9px 26px 0;
+  border-bottom-color: #e9edf4;
+}
+
+.tokenStatsWorkspace .tokenStatsTabs button {
+  position: relative;
+  min-height: 48px;
+  padding: 0 3px;
+  border-radius: 0;
+  background: transparent;
+  color: #8b94a7;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tokenStatsWorkspace .tokenStatsTabs button > span {
+  display: none;
+}
+
+.tokenStatsWorkspace .tokenStatsTabs button.tokenStatsTabSelected {
+  background: transparent;
+  color: #4d5dc4;
+  box-shadow: inset 0 -2px #5e6dd5;
+}
+
+.tokenStatsWorkspace .tokenStatsTabs button:hover {
+  background: transparent;
+  color: #4d5dc4;
+}
+
+.tokenStatsWorkspace .tokenStatsDataTable {
+  color: #59667e;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsDataTable th {
+  height: 43px;
+  background: #f8f9fc;
+  color: #7c889d;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.tokenStatsWorkspace .tokenStatsDataTable td {
+  height: 51px;
+  border-bottom-color: #f0f2f7;
+}
+
+.tokenStatsWorkspace .tokenStatsDataTable tbody tr:hover {
+  background: #f7f9ff;
+}
+
+.tokenStatsWorkspace .tokenStatsDataTable td strong {
+  color: #44516a;
+  font-weight: 600;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheValue.is-unknown {
+  color: #8a94a7;
+}
+
+.tokenStatsWorkspace .tokenStatsCacheValue.is-partial {
+  color: #9a6d32;
+  white-space: nowrap;
+}
+
+.tokenStatsWorkspace .tokenStatsMono {
+  color: #4c5b76;
+  font-size: 12px;
+}
+
+.tokenStatsWorkspace .tokenStatsStatus.is-success {
+  background: #edf5f2;
+  color: #568374;
+}
+
+.tokenStatsWorkspace .tokenStatsPagination {
+  padding: 17px 24px;
+}
+
+.tokenStatsWorkspace .tokenStatsPagination nav > button.is-current {
+  border-color: #e1e5fb;
+  background: #edf0ff;
+  color: #4f5fd5;
+  box-shadow: none;
+}
+
+.tokenStatsWorkspace .tokenStatsTableFootnote,
+.tokenStatsWorkspace .tokenStatsPagination p span {
+  color: #8792a6;
+}
+
+.tokenStatsWorkspace .tokenStatsState {
+  border-color: var(--token-border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+@media (max-width: 1150px) {
+  .tokenStatsWorkspace .tokenStatsFilterBar {
+    grid-template-columns: 1fr;
+  }
+
+  .tokenStatsWorkspace .tokenStatsSourceControl {
+    width: 100%;
+  }
+
+  .tokenStatsWorkspace .tokenStatsDateRange {
+    flex-wrap: wrap;
+  }
+
+  .tokenStatsWorkspace .tokenStatsQuickRanges {
+    grid-row: 3;
+  }
+
+  .tokenStatsWorkspace .tokenStatsAdvancedFilters {
+    justify-content: flex-start;
+    border-top: 1px solid #edf0f5;
+    padding-top: 13px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverview {
+    grid-template-columns: minmax(170px, 1fr) minmax(260px, 1fr);
+    padding: 24px;
+    gap: 24px 14px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewSide > div {
+    padding-inline: 16px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewSide {
+    grid-column: auto;
+  }
+
+  .tokenStatsWorkspace .tokenStatsMetricGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 20px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewMetric:nth-child(4) {
+    border-right: 0;
+  }
+
+  .tokenStatsWorkspace .tokenStatsCacheRate {
+    grid-column: 1 / -1;
+    padding: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .tokenStatsWorkspace {
+    padding: 22px 14px 32px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsTopbar {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 21px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsHeading h1 {
+    font-size: 25px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsHeaderActions {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsLocalBadge {
+    font-size: 10px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsScanLine {
+    font-size: 12px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsRefreshButton {
+    min-width: 65px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsFilterBar {
+    gap: 12px;
+    padding: 13px;
+    margin-bottom: 16px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsSourceControl {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tokenStatsWorkspace .tokenStatsSourceControl button {
+    padding-inline: 2px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .tokenStatsWorkspace .tokenStatsDateRange {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsDateRange input {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 7px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsQuickRanges {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsQuickRanges button {
+    min-height: 36px;
+    padding-inline: 4px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsAdvancedFilters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsAdvancedFilters select {
+    width: 100%;
+    max-width: 100%;
+    min-height: 36px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverview {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 22px 20px;
+    gap: 22px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewSide {
+    grid-column: 1;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewSide > div {
+    padding: 0 14px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewSide > div:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewSide strong {
+    font-size: 20px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsMetricGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 20px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewMetric {
+    padding: 0 14px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewMetric:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewMetric:nth-child(even) {
+    border-right: 0;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverviewMetric strong {
+    font-size: 21px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsActivityCard,
+  .tokenStatsWorkspace .tokenStatsTrendCard {
+    padding: 20px 17px 15px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsActivityHeader,
+  .tokenStatsWorkspace .tokenStatsCardHeader {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsActivityLegend {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsCoverageNote {
+    margin-top: 0;
+    padding: 12px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsActivityReadout {
+    gap: 6px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsChartLegend {
+    gap: 10px 14px;
+    margin-top: 14px;
+    font-size: 12px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsTabs {
+    gap: 10px;
+    padding: 7px 16px 0;
+  }
+
+  .tokenStatsWorkspace .tokenStatsTabs button {
+    min-height: 44px;
+    padding: 0;
+    font-size: 12px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsPagination {
+    padding: 15px;
+    gap: 13px;
+  }
+
+  .tokenStatsWorkspace .tokenStatsOverview,
+  .tokenStatsWorkspace .tokenStatsActivityCard,
+  .tokenStatsWorkspace .tokenStatsTrendCard,
+  .tokenStatsWorkspace .tokenStatsDetailsCard {
+    margin-bottom: 16px;
+    border-radius: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tokenStatsWorkspace button {
+    transition: none;
+  }
+}

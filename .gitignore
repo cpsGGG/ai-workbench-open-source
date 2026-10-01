@@ -1,0 +1,52 @@
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+
+# Local runtime data and caches
+.cache/
+
+# Browser automation and review artifacts
+.playwright-mcp/
+.review-shots/
+research-screenshots/
+
+# Local backups and editor files
+_backups/
+*.bak
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Open-source exports are built from an explicit file allowlist.
+.release/
+
+# Personal stores, exports, and credentials must never be committed.
+/data/
+/storage/
+/private/
+/exports/
+/screenshots/
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+*.jsonl
+*.pem
+*.key
+*.pfx
+*.p12
+*.auth.json
+
+# Image generation metadata includes local machine paths.
+assets/icons/*-generation.json
+assets/icons/*-source.png
+
