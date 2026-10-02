@@ -1,7 +1,7 @@
 {
-  "name": "AI 工作台",
-  "short_name": "AI 工作台",
-  "description": "个人 AI 工作与资料管理工作台",
+  "name": "一站 AI 工作台",
+  "short_name": "一站 AI 工作台",
+  "description": "论文、视频、任务、AI 用量，一站管理。",
   "lang": "zh-CN",
   "start_url": "/",
   "scope": "/",

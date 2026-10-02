@@ -110,8 +110,8 @@ function renderShell() {
         <div class="brand">
           <div class="brandMark">AI</div>
           <div>
-            <strong>AI 工作台</strong>
-            <span>Personal Desk</span>
+            <strong>一站 AI 工作台</strong>
+            <span>OneStop AI Workbench</span>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 $Root = Split-Path -Parent $PSScriptRoot
 $Port = 5173
@@ -58,7 +58,7 @@ for ($i = 0; $i -lt 30; $i++) {
 
 if (-not $ready) {
   Add-Type -AssemblyName PresentationFramework
-  [System.Windows.MessageBox]::Show("AI Workbench failed to start. Please check Python.", "AI Workbench")
+  [System.Windows.MessageBox]::Show("一站 AI 工作台启动失败，请检查 Python。", "一站 AI 工作台")
   exit 1
 }
 
@@ -76,7 +76,7 @@ if (Test-Path -LiteralPath $WindowIdentityScript) {
     "-ExecutionPolicy", "Bypass",
     "-WindowStyle", "Hidden",
     "-File", ('"' + $WindowIdentityScript + '"'),
-    "-TitlePattern", '"^AI 工作台$"',
+    "-TitlePattern", '"^(?:一站 AI 工作台|AI 工作台)$"',
     "-IconPath", ('"' + $WindowIcon + '"'),
     "-AppId", "Local.AIWorkbench",
     "-RelaunchCommand", ('"' + $Launcher + '"')

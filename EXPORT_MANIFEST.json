@@ -13,8 +13,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 2464,
-      "sha256": "30598fa3805a02cff75a5ee2e5d0eca52ac17dc93885448c342e39b9a2dc8daf"
+      "bytes": 2527,
+      "sha256": "80920d48a938adccd945c5c9106a0135833d01a712feabba8693428f0ff9675c"
     },
     {
       "path": "assets/icons/ai-workbench-soft-v2-180.png",
@@ -53,13 +53,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 1029,
-      "sha256": "3bc3013424277cf49398fdcb8eef65aded75690e8c15966249014b541a9064b0"
+      "bytes": 1143,
+      "sha256": "2837b407a8670f2a3f07fc59ff9b89a050fd27438e7bceaf518378d2e87d6bda"
     },
     {
       "path": "manifest.webmanifest",
-      "bytes": 578,
-      "sha256": "c25e27124313e342517d046e89bf8616b5f21cecfd4252782fa47a8ebe302171"
+      "bytes": 606,
+      "sha256": "51af20073c64f95257e249d1aa8cf12626349ba20c1d7bddd450e8a13547b118"
     },
     {
       "path": "paper_trends.py",
@@ -88,13 +88,13 @@
     },
     {
       "path": "scripts/start-workbench.ps1",
-      "bytes": 2565,
-      "sha256": "192acd006794dddaf6851eff5afae5fe541a99d44cef53355fb5e7555188e51a"
+      "bytes": 2602,
+      "sha256": "766d84da2ad3482ecec60978da9392c4e1bd1b8c549a1361aeb3d2b7b2b44c86"
     },
     {
       "path": "scripts/stop-workbench.ps1",
-      "bytes": 470,
-      "sha256": "65363a95912e0048dc855ab16ae52cc684f49d836a169bb14712e5983095afa1"
+      "bytes": 481,
+      "sha256": "acd16dfe01245aed2222ae174760ab2a999dcb5e4c9753c435696b07966bf87f"
     },
     {
       "path": "server.py",
@@ -103,8 +103,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 11154,
-      "sha256": "553388519bb9ff2a68b6c8321b6643c5916e1b16d4b0f56f08795374a8879b85"
+      "bytes": 11168,
+      "sha256": "57a3e0317efcc439c9277c247ed71261dae9e0c55f2176f98e79f52cfe64b9ab"
     },
     {
       "path": "src/modules/accounting/accounting.js",
@@ -158,8 +158,8 @@
     },
     {
       "path": "src/modules/token-stats/token-stats.js",
-      "bytes": 78412,
-      "sha256": "f5f4b6fd7332f8323f6bb92f9ad489f1f14110a3ed0ecbe7fc019dbcaa50a11d"
+      "bytes": 78419,
+      "sha256": "5c6237830b7370e033f9522439e0d44673cfde58bc508a528591f36ccd13d531"
     },
     {
       "path": "src/modules/tweets/tweets.js",

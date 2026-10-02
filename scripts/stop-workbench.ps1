@@ -1,4 +1,4 @@
-$Port = 5173
+﻿$Port = 5173
 
 $listeners = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
 foreach ($listener in $listeners) {
@@ -12,4 +12,4 @@ foreach ($listener in $listeners) {
 }
 
 Add-Type -AssemblyName PresentationFramework
-[System.Windows.MessageBox]::Show("AI Workbench has been stopped.", "AI Workbench")
+[System.Windows.MessageBox]::Show("一站 AI 工作台已停止。", "一站 AI 工作台")

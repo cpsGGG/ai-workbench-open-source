@@ -47,7 +47,7 @@ export function createTokenStatsWorkspace(root) {
   root.innerHTML = `
     <header class="tokenStatsTopbar">
       <div class="tokenStatsHeading">
-        <p class="tokenStatsEyebrow">AI 工作台 / 使用洞察</p>
+        <p class="tokenStatsEyebrow">一站 AI 工作台 / 使用洞察</p>
         <h1>使用统计</h1>
         <p class="tokenStatsScanLine" data-token-stats-role="status" aria-live="polite">
           选择时间范围，查看本机 AI 模型的 Token 使用情况
